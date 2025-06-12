@@ -6,6 +6,10 @@ import { getAuth, onAuthStateChanged  } from 'firebase/auth';
 import { use, useEffect } from 'react';
 import { useSetRecoilState, useRecoilValue, RecoilRoot } from 'recoil';
 import { userAtom } from './store/user';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import Footer from './components/Footer';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBNi9KItAqxQTlKn8fNpxzvSRAHI-gPQUg",
@@ -62,12 +66,13 @@ function StoreApp(){
 
 
   return (
-    <>
-      <div >
-        You are logged in as {user.user?.email}
-      </div>
-    </>
-  )
+    <div className="bg-[#0a0c10] text-white font-sans min-h-screen flex flex-col justify-between">
+      <Navbar />
+      <Hero />
+      <Features />
+      <Footer />
+    </div>
+  );
 }
 
 export default App
