@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import { Signin } from './components/Signin';
 import { getAuth, onAuthStateChanged  } from 'firebase/auth';
 import { use, useEffect } from 'react';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue, RecoilRoot } from 'recoil';
 import { userAtom } from './store/user';
 
 const firebaseConfig = {
@@ -22,7 +22,14 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 function App() {
-  const setUser = useSetRecoilState(userAtom); 
+  return <RecoilRoot>
+    <StoreApp />
+  </RecoilRoot>
+
+}
+
+function StoreApp(){
+    const setUser = useSetRecoilState(userAtom); 
   const user = useRecoilValue(userAtom);
 
   useEffect(() => {
@@ -62,5 +69,6 @@ function App() {
     </>
   )
 }
+
 export default App
 
